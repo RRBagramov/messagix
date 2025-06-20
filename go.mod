@@ -1,4 +1,4 @@
-module github.com/0xzer/messagix
+module github.com/RRBagramov/messagix
 
 go 1.20
 
