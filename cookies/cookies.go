@@ -3,7 +3,7 @@ package cookies
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/0xzer/messagix/types"
+	"github.com/RRBagramov/messagix/types"
 	"golang.org/x/net/http/httpguts"
 	"net/http"
 	"net/textproto"

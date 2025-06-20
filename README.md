@@ -25,7 +25,7 @@ Messagix is a easy-to-use Go library for interacting with facebooks/metas lights
 
 Use the [package manager](https://golang.org/dl/) to install messagix.
 ```bash
-go get github.com/0xzer/messagix
+go get github.com/RRBagramov/messagix
 ```
 
 # Simplistic Usage
@@ -36,9 +36,9 @@ import (
 	"log"
 	"os"
 	"testing"
-	"github.com/0xzer/messagix"
-	"github.com/0xzer/messagix/debug"
-	"github.com/0xzer/messagix/types"
+	"github.com/RRBagramov/messagix"
+	"github.com/RRBagramov/messagix/debug"
+	"github.com/RRBagramov/messagix/types"
 )
 
 var cli *messagix.Client
@@ -101,8 +101,8 @@ package main
 
 import (
 	"log"
-	"github.com/0xzer/messagix"
-	"github.com/0xzer/messagix/debug"
+	"github.com/RRBagramov/messagix"
+	"github.com/RRBagramov/messagix/debug"
 )
 
 func main() {

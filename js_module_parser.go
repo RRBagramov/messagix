@@ -11,9 +11,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/0xzer/messagix/cookies"
-	"github.com/0xzer/messagix/methods"
-	"github.com/0xzer/messagix/types"
+	"github.com/RRBagramov/messagix/cookies"
+	"github.com/RRBagramov/messagix/methods"
+	"github.com/RRBagramov/messagix/types"
 	"golang.org/x/net/html"
 )
 

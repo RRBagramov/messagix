@@ -6,10 +6,10 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/0xzer/messagix/cookies"
-	"github.com/0xzer/messagix/crypto"
-	"github.com/0xzer/messagix/data/responses"
-	"github.com/0xzer/messagix/types"
+	"github.com/RRBagramov/messagix/cookies"
+	"github.com/RRBagramov/messagix/crypto"
+	"github.com/RRBagramov/messagix/data/responses"
+	"github.com/RRBagramov/messagix/types"
 	"github.com/google/go-querystring/query"
 )
 
@@ -21,8 +21,8 @@ type InstagramMethods struct {
 func (ig *InstagramMethods) Login(identifier, password string) (cookies.Cookies, error) {
 	ig.client.loadLoginPage()
 	if err := ig.client.configs.SetupConfigs(); err != nil {
-        return nil, err
-    }
+		return nil, err
+	}
 	h := ig.client.buildHeaders(false)
 	h.Add("x-web-device-id", ig.client.cookies.GetValue("ig_did"))
 	h.Add("sec-fetch-dest", "empty")
@@ -67,11 +67,11 @@ func (ig *InstagramMethods) Login(identifier, password string) (cookies.Cookies,
 	}
 
 	loginForm := &types.InstagramLoginPayload{
-		Password: encryptedPw,
-		OptIntoOneTap: false,
-		QueryParams: "{}",
+		Password:             encryptedPw,
+		OptIntoOneTap:        false,
+		QueryParams:          "{}",
 		TrustedDeviceRecords: "{}",
-		Username: identifier,
+		Username:             identifier,
 	}
 
 	form, err := query.Values(&loginForm)
@@ -92,14 +92,14 @@ func (ig *InstagramMethods) Login(identifier, password string) (cookies.Cookies,
 func (ig *InstagramMethods) FetchProfile(username string) (*responses.ProfileInfoResponse, error) {
 	h := ig.client.buildHeaders(true)
 	h.Add("x-requested-with", "XMLHttpRequest")
-	h.Add("referer", ig.client.getEndpoint("base_url") +  username + "/")
+	h.Add("referer", ig.client.getEndpoint("base_url")+username+"/")
 	reqUrl := ig.client.getEndpoint("web_profile_info") + "username=" + username
 
 	resp, respBody, err := ig.client.MakeRequest(reqUrl, "GET", h, nil, types.NONE)
 	if err != nil {
 		return nil, fmt.Errorf("failed to fetch the profile by username @%s: %e", username, err)
 	}
-	
+
 	cookies.UpdateFromResponse(ig.client.cookies, resp.Header)
 
 	var profileInfo *responses.ProfileInfoResponse
@@ -121,7 +121,7 @@ func (ig *InstagramMethods) FetchMedia(mediaId string) (*responses.FetchMediaRes
 	if err != nil {
 		return nil, fmt.Errorf("failed to fetch the media by id %s: %e", mediaId, err)
 	}
-	
+
 	cookies.UpdateFromResponse(ig.client.cookies, resp.Header)
 
 	var mediaInfo *responses.FetchMediaResponse
@@ -147,7 +147,7 @@ func (ig *InstagramMethods) FetchReel(reelIds []string) (*responses.ReelInfoResp
 	if err != nil {
 		return nil, fmt.Errorf("failed to fetch reels by ids %v: %e", reelIds, err)
 	}
-	
+
 	cookies.UpdateFromResponse(ig.client.cookies, resp.Header)
 
 	var reelInfo *responses.ReelInfoResponse

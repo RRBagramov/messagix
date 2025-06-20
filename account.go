@@ -3,13 +3,13 @@ package messagix
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/RRBagramov/messagix/cookies"
+	"github.com/RRBagramov/messagix/socket"
+	"github.com/RRBagramov/messagix/table"
+	"github.com/RRBagramov/messagix/types"
+	"github.com/google/uuid"
 	"log"
 	"net/http"
-	"github.com/0xzer/messagix/cookies"
-	"github.com/0xzer/messagix/socket"
-	"github.com/0xzer/messagix/table"
-	"github.com/0xzer/messagix/types"
-	"github.com/google/uuid"
 )
 
 type Account struct {
@@ -38,7 +38,7 @@ func (a *Account) processLogin(resp *http.Response, respBody []byte) error {
 			a.client.cookies.(*cookies.InstagramCookies).IgWWWClaim = resp.Header.Get("x-ig-set-www-claim")
 		}
 	}
-	
+
 	if err == nil {
 		cookies.UpdateFromResponse(a.client.cookies, resp.Header)
 	}
@@ -107,7 +107,6 @@ func (a *Account) ReportAppState(state table.AppState) error {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 
 	resp := a.client.socket.responseHandler.waitForPubResponseDetails(packetId)
 	if resp == nil {
