@@ -49,7 +49,7 @@ func (fb *FacebookMethods) Login(identifier, password string) (cookies.Cookies, 
 	loginForm.Email = identifier
 	loginForm.EncPass = encryptedPW
 	loginForm.AbTestData = data
-	loginForm.Lgndim = "eyJ3IjoyMjc1LCJoIjoxMjgwLCJhdyI6MjI3NiwiYWgiOjEyMzIsImMiOjI0fQ==" // irrelevant
+	loginForm.Lgndim = "eyJ3IjoxMjgwLCJoIjo4MDAsImF3IjoxMjgwLCJhaCI6ODAwLCJjIjozMH0=" // irrelevant
 	loginForm.Lgnjs = strconv.Itoa(fb.client.configs.browserConfigTable.SiteData.SpinT)
 	loginForm.Timezone = "-120"
 
